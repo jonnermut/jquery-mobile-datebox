@@ -91,7 +91,7 @@
 				ret = {
 					ok: true,
 					iso: year + "-" + w._zPad(month+1) + "-" + w._zPad(date),
-					theme: o.themeDate,
+					themes: [o.themeDate],
 					force: false,
 					recok: true,
 					rectheme: false
@@ -146,27 +146,34 @@
 				
 				if ( o.calHighPick && date === presetDay && 
 						( w.d.input.val() !== "" || o.defaultValue !== false )) {
-					ret.theme = o.themeDatePick;
-				} else if ( o.calHighToday && ret.comp === thisDate.comp() ) {
-					ret.theme = o.themeDateToday;
-				} else if ( o.calHighPick && w.calDateVisible && w.calBackDate !== false &&
+					ret.themes.push( o.themeDatePick );
+				}
+				if ( o.calHighToday && ret.comp === thisDate.comp() ) {
+					ret.themes.push( o.themeDateToday );
+				}
+				if ( o.calHighPick && w.calDateVisible && w.calBackDate !== false &&
 						w.calBackDate.comp() === ret.comp ) {
-					ret.theme = o.themeDatePick;
+					ret.themes.push( o.themeDatePick );
 					ret.force = true;
-				} else if ( $.isArray(o.highDatesAlt) && 
+				}
+				if ( $.isArray(o.highDatesAlt) && 
 						($.inArray(ret.iso, o.highDatesAlt) > -1)
 					) {
-					ret.theme = o.themeDateHighAlt;
-				} else if ( $.isArray(o.highDatesAlt2) && 
+					ret.themes.push( o.themeDateHighAlt );
+				}
+				if ( $.isArray(o.highDatesAlt2) && 
 						($.inArray(ret.iso, o.highDatesAlt2) > -1)
 					) {
-					ret.theme = o.themeDateHighAlt2;
-				} else if ( $.isArray(o.highDates) && ($.inArray(ret.iso, o.highDates) > -1) ) {
-					ret.theme = o.themeDateHigh;
-				} else if ( $.isArray(o.highDays) && ($.inArray(day, o.highDays) > -1) ) {
-					ret.theme = o.themeDayHigh;
-				} else if ( $.isArray(o.highDatesRec) && ret.rectheme === true ) {
-					ret.theme = o.themeDateHighRec;
+					ret.themes.push( o.themeDateHighAlt2 );
+				}
+				if ( $.isArray(o.highDates) && ($.inArray(ret.iso, o.highDates) > -1) ) {
+					ret.themes.push( o.themeDateHigh );
+				}
+				if ( $.isArray(o.highDays) && ($.inArray(day, o.highDays) > -1) ) {
+					ret.themes.push( o.themeDayHigh );
+				}
+				if ( $.isArray(o.highDatesRec) && ret.rectheme === true ) {
+					ret.themes.push( o.themeDateHighRec );
 				}
 			}
 			return ret;
@@ -558,11 +565,15 @@
 									};
 								}
 							}
+							var themeClasses = "";
+							$.each(checked.themes, function(k, theme) {
+								themeClasses += " ui-btn-" + theme;
+							});
 							$("<div>")
 								.html( fmtRet.text )
 								.addClass( uid + "griddate ui-corner-all ui-btn")
 								.addClass( ( curMonth === genny[row][col][1] || checked.force ) ?
-									( "ui-btn-" + checked.theme +
+									( themeClasses +
 										( checked.ok ? "" : " ui-state-disabled" )
 									) :
 									( uid + "griddate-empty" )
