@@ -9,6 +9,7 @@
 		themeDatePick: "b",
 		themeDateHigh: "b",
 		themeDateHighAlt: "b",
+		themeDateHighAlt2: "b",
 		themeDateHighRec: "b",
 		themeDate: "a",
 		
@@ -40,6 +41,7 @@
 		highDates: false,
 		highDatesRec: false,
 		highDatesAlt: false,
+		highDatesAlt2: false,
 		enableDates: false,
 		calDateList: false,
 		calShowDateList: false
@@ -155,6 +157,10 @@
 						($.inArray(ret.iso, o.highDatesAlt) > -1)
 					) {
 					ret.theme = o.themeDateHighAlt;
+				} else if ( $.isArray(o.highDatesAlt2) && 
+						($.inArray(ret.iso, o.highDatesAlt2) > -1)
+					) {
+					ret.theme = o.themeDateHighAlt2;
 				} else if ( $.isArray(o.highDates) && ($.inArray(ret.iso, o.highDates) > -1) ) {
 					ret.theme = o.themeDateHigh;
 				} else if ( $.isArray(o.highDays) && ($.inArray(day, o.highDays) > -1) ) {
