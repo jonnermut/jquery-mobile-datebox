@@ -567,7 +567,7 @@
 							}
 							var themeClasses = "";
 							$.each(checked.themes, function(k, theme) {
-								themeClasses += " ui-btn-" + theme;
+								themeClasses += " ui-btn-" + theme + " calendar-theme-" + theme;
 							});
 							$("<div>")
 								.html( fmtRet.text )
