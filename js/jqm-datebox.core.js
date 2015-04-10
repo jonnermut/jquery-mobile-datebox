@@ -1626,6 +1626,11 @@
 				return this.options[ opt ];
 			}
 		},
+		setOption: function( opt, value ) {
+			// Provide a public function set a particular option
+			this.options[ opt ] = value;
+			this.refresh();
+		},
 		_t: function ( obj ) {
 			this.d.input.trigger( "datebox", obj );
 		}
