@@ -445,7 +445,7 @@
 		_pa: function (arr,date) {
 			// "Clean" a date for use.
 			if ( typeof date === "boolean" ) { 
-				return new this._date( arr[0], arr[1], arr[2], 0, 0, 0, 0 );
+				return new this._date( arr[0], arr[1], arr[2], 12, 0, 0, 0 );
 			}
 			return new this._date( 
 				date.get(0),
@@ -661,7 +661,7 @@
 					w._n( d.year, 0 ),
 					w._n( d.mont, 0 ),
 					w._n( d.date, 1 ),
-					w._n( d.hour, 0 ),
+					w._n( d.hour, 12 ),
 					w._n( d.mins, 0 ),
 					w._n( d.secs, 0 ),
 					0

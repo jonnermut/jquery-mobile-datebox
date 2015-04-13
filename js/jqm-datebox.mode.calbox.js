@@ -85,7 +85,7 @@
 				minDate = done.i,
 				thisDate = done.t,
 				presetDay = done.p,
-				day = new this._date(year,month,date,0,0,0,0).getDay(),
+				day = new this._date(year,month,date,12,0,0,0).getDay(),
 				bdRec = o.blackDatesRec,
 				hdRec = o.highDatesRec,
 				ret = {
